@@ -1,0 +1,11 @@
+{
+    "source_video_path":"/mmpose/data/2e57b9_0.mp4",
+    "rtmpose3d_detection_config_path":"",
+    "rtmpose3d_detection_checkpoint_path":"",
+    "rtmpose3d_estimator_config_path":"",
+    "rtmpose3d_estimator_checkpoint_path":"",
+    "roboflow_sports_ball_detection_path":"/mmpose/data/football-ball-detection.pt",
+    "roboflow_sports_player_detection_path":"/mmpose/data/football-player-detection.pt",
+    "roboflow_sports_pitch_detection_path":"/mmpose/data/football-pitch-detection.pt",
+    "device":"cuda"
+}
