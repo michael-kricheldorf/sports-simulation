@@ -30,15 +30,15 @@ sudo systemctl restart docker
     ```
 2. Build the Docker container
     ```sh
-    docker build -t sports-simulation ./sports-simulation
+    docker build -t sports-simulation ./
     ```
-    Note: If you need to make any changes to the Dockerfile and they are not being reflected when you run the container, then try pruning the container image: `docker system prune sports-simulation` and rebuilding.
+    Note: If you need to make any changes to the Dockerfile and they are not being reflected when you run the container, then try pruning the container image: `docker system prune -a` and rebuilding.
 3. Run the Docker container
     ```sh
-    docker run --gpus all --shm-size=8g -it -v ~/sports-simulation:/sports-simulation sports-simulation
+    docker run --gpus all --shm-size=8g -it -v ./:/sports-simulation sports-simulation
     ```
 4. When in the container, make sure to update the `config.json` file with the appropriate file paths.
 5. Within the container, run the program
     ```sh
-    cd /sports-simulation/sports-simulation && python3 ./main.py --config_json_path config.json
+    cd /sports-simulation && python3 ./main.py --config_json_path config.json
     ``` 
