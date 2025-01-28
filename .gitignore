@@ -1,0 +1,5 @@
+# any of the large models
+data/
+models/
+player_models/
+__pycache__/

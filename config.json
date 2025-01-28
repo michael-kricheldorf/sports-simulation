@@ -1,0 +1,10 @@
+{
+    "source_video_path":"/sports-simulation/sports-simulation/data/0bfacc_0.mp4",
+    "pose_estimate_config":"/sports-simulation/sports-simulation/models/rtmw3d-l_8xb64_cocktail14-384x288.py",
+    "pose_estimate_checkpoint":"/sports-simulation/sports-simulation/models/rtmw3d-l_8xb64_cocktail14-384x288-794dbc78_20240626.pth",
+    "ball_detection":"/sports-simulation/sports-simulation/models/football-ball-detection.pt",
+    "player_detection":"/sports-simulation/sports-simulation/models/football-player-detection.pt",
+    "pitch_detection":"/sports-simulation/sports-simulation/models/football-pitch-detection.pt",
+    "device":"cuda",
+    "player_model":"/sports-simulation/sports-simulation/player_models/rigged_1.fbx"
+}
