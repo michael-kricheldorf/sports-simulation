@@ -38,4 +38,4 @@ if __name__ == '__main__':
     
 
 
-    video.generate_characters()    
+    video.generate_players()    
