@@ -54,7 +54,8 @@ RUN pip install gdown
 
 WORKDIR /sports-simulation
 
-# commands to install all the pytorch files / models
+# commands to download all the pytorch files / models
+# sourced from https://chemicloud.com/blog/download-google-drive-files-using-wget/
 RUN mkdir models && cd models
 # football-ball-detection
 RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1usHpmtC5eYd0LScISVOEA9CveBQn9u4t' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1usHpmtC5eYd0LScISVOEA9CveBQn9u4t" -O football-ball-detection.pt && rm -rf /tmp/cookies.txt
@@ -68,3 +69,11 @@ RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=down
 RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=10F_9FPYokoMRijvbeH4JfD3lXmc4Eytf' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=10F_9FPYokoMRijvbeH4JfD3lXmc4Eytf" -O rtmw3d-l_8xb64_cocktail14-384x288-794dbc78_20240626.pth && rm -rf /tmp/cookies.txt
 # rtmw3d-l_8xb64_cocktail14-384x288.py
 RUN wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=13WiZCbIm_twBxeRrgmxJaOfQs1QJ10XS' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=13WiZCbIm_twBxeRrgmxJaOfQs1QJ10XS" -O rtmw3d-l_8xb64_cocktail14-384x288.py && rm -rf /tmp/cookies.txt
+
+# commands to download all the sample footage
+RUN cd .. && mkdir videos && cd videos
+
+# download videos using the same style as above
+# I didn't implement this because it's all soccer sample video footage
+# but if you want to do this with football, just use the above format and 
+# follow the linked guide on how to download big stuff from Google Drive
