@@ -1,7 +1,9 @@
 import position_estimator as rs
 import numpy as np
-import pose_estimator as rtm
+from mmengine.logging import print_log
+from mmpose.apis import init_model
 import player
+from rtmpose3d import *
 
 class Video:
     def __init__(self, source_video: str, pose_estimate_config: str, pose_estimate_checkpoint: str, 
@@ -12,7 +14,8 @@ class Video:
         self.player_model = player_model
 
         self.position_estimator = rs.RoboflowSports(ball_detection, player_detection, pitch_detection, device)
-        self.pose_estimator = rtm.RTMPose3D(pose_estimate_config, pose_estimate_checkpoint, device)
+        self.pose_estimator = init_model(pose_estimate_config, pose_estimate_checkpoint, device)
+        #self.pose_estimator = rtm.RTMPose3D(pose_estimate_config, pose_estimate_checkpoint, device)
 
     def generate_characters(self):
         # take source video and then update the characters attribute with a list of player objects

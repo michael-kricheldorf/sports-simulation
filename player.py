@@ -1,11 +1,15 @@
 import position_estimator as rs
-import numpy as np
-import pose_estimator as rtm
 import json
 import pandas as pd
+import numpy as np
+from mmengine.logging import print_log
+from mmpose.apis import inference_topdown
+from rtmpose3d import *
 
 class Player:
-    def __init__(self, tracker_id: int, team_value: int, image_crop: np.ndarray, xy_pos: np.ndarray, player_model, pose_estimator: rtm.RTMPose3D, position_estimator: rs.RoboflowSports):
+    def __init__(self, tracker_id: int, team_value: int, image_crop: np.ndarray, 
+                xy_pos: np.ndarray, player_model, pose_estimator, 
+                position_estimator: rs.RoboflowSports):
         self.tracker_id = tracker_id.astype(int)
         self.team_value = team_value
         
@@ -37,7 +41,18 @@ class Player:
         # use image crops as inputs to rtmpose3d single image call and generate array for each frame containing keypoints
         for image_crop in self.image_crops:
             if (image_crop is not None):
-                keypoint = self.pose_estimator.process_bbox(image_crop)
+                pose_est_result = inference_topdown(self.pose_estimator, image_crop)[0]
+
+                pred_instances = pose_est_result.pred_instances
+                keypoints = pred_instances.keypoints
+                keypoint_scores = pred_instances.keypoint_scores
+                if keypoint_scores.ndim == 3:
+                    keypoint_scores = np.squeeze(keypoint_scores, axis=1)
+                    pose_est_result.pred_instances.keypoint_scores = keypoint_scores
+                if keypoints.ndim == 4:
+                    keypoints = np.squeeze(keypoints, axis=1)
+
+                keypoint = -keypoints[..., [0, 2, 1]]
             else:
                 # TODO: if keypoint is missing, interpolate between previous frame and next frame
                 keypoint = None
